@@ -11,11 +11,6 @@ camera = Camera()
 httpserver = HttpServer()
 CLIENTS = set()
 
-def singleStaticPage():
-    Handler = http.server.SimpleHTTPRequestHandler
-    with socketserver.TCPServer(("", 8080), Handler) as httpd:
-        httpd.serve_forever()
-
 async def handler(websocket):
     CLIENTS.add(websocket)
     try:
