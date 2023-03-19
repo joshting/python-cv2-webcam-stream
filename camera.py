@@ -5,15 +5,16 @@ import time
 import cv2
 
 class Camera:
-    def __init__(self):
+    
+    def __init__(self, camIndex):
         self.thread = None
         self.current_frame  = None
         self.is_running: bool = False
-        self.camera = cv2.VideoCapture(0)
+        self.camera = cv2.VideoCapture(camIndex)
         if not self.camera.isOpened():
             raise Exception("Could not open video device")
-        self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-        self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        # self.camera.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        # self.camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
     def __del__(self):
         self.camera.release()
@@ -30,6 +31,7 @@ class Camera:
         self.is_running = False
         self.thread.join()
         self.thread = None
+        self.current_frame  = None
 
     def _capture(self):
         self.is_running = True
@@ -40,6 +42,8 @@ class Camera:
                 self.current_frame = frame
             else:
                 print("Failed to capture frame")
-        print("Reading thread stopped")
+
+        print("Camera thread stopped")
         self.thread = None
         self.is_running = False
+        self.current_frame  = None
