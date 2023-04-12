@@ -4,7 +4,7 @@
 This is to demonstrate a way to broadcast video from a webcam to web clients (browsers) using:
 
 - Python
-- OpenCV (opencv-python)
+- OpenCV (opencv-python) - getting frames from camera and apply face detection
 - WebSocket
 - Http server
 
@@ -29,6 +29,9 @@ Open a browser and navigate to [localhost:8080](localhost:8080).  This works for
 
 ## Disclaimer
 There are numerous ways to do this and the way used here might not be the best.  This is experimental, learn as you code and no way near to anything for production. Therefore, there is no guarantee in terms of performance and security.  Suggestions to a better way or how it can be improved are welcomed.
+
+## Testing output of face detection
+The metadata for the face detections comes in the same payload as the frames.  To test, use the [https://github.com/joshting/golang-react-video-wall](https://github.com/joshting/golang-react-video-wall)
 
 ## Resources
 1. [https://websockets.readthedocs.io/en/stable/topics/broadcast.html](https://websockets.readthedocs.io/en/stable/topics/broadcast.html)
